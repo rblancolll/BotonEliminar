@@ -49,7 +49,15 @@ public class NewServlet extends HttpServlet {
             }
            
             registroAlumno.guardarAlumno(alumno);//almacenarlo en el array
-             alumnosRegistrados= registroAlumno.getAlumnos();           
+             alumnosRegistrados= registroAlumno.getAlumnos();   
+             
+             if(request.getParameter("position") != null){
+                       String position = request.getParameter("position");
+                       registroAlumno.deleteClient(position);
+                   
+    
+         }
+                  // alumnosRegistrados=registroAlumno.getAlumnos();
            
             for (int i = 0; i < alumnosRegistrados.length; i++){
                     if(!alumnosRegistrados[i].getCodigo().isEmpty()){
@@ -60,7 +68,7 @@ public class NewServlet extends HttpServlet {
                        respuesta.println("<td>" + alumnosRegistrados[i].getTipo()+ "</td>");
                       respuesta.println("<td>"
                                + "<button type=\"button\" class=\"btn btn-warning\"></i>Editar</button> "
-                               + "<button type=\"button\"  onclick=\"eliminarElementosEnEjecusion()\" class=\"btn btn-danger\">Eliminar</button>"
+                              + "<button type=\"button\" class=\"btn btn-danger\" onclick='eliminarElementos("+ i +");'>Eliminar</button>"
                                + "</td></tr>");
 
                     }
@@ -108,3 +116,4 @@ public class NewServlet extends HttpServlet {
     }// </editor-fold>
 
 }
+

@@ -9,7 +9,8 @@ package Clases;
  * @author JP
  */
 public class AlumnoController {
-      Alumno[] tablaALumno;
+     
+    Alumno[] tablaALumno;
     int indiceArray;
     
     public AlumnoController(){
@@ -23,7 +24,16 @@ public class AlumnoController {
     }
     
     public Alumno[] getAlumnos(){
-        return this.tablaALumno;
+        return tablaALumno;
     }
     
+    public void deleteClient(String position){
+          int pos = Integer.parseInt(position);
+          this.tablaALumno[pos] = null;
+          for(int i = pos; i < indiceArray - 1; i++) {
+                this.tablaALumno[i] = this.tablaALumno[i + 1];
+          }
+          this.tablaALumno[indiceArray - 1] = null;
+          indiceArray --;
+    }
 }

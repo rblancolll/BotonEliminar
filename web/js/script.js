@@ -156,11 +156,29 @@ function mostrarMensaje(){
   timer: 1500
 })
 }
-function eliminarElementosEnEjecusion(){
-	let container= document.getElementById("bodyTable");
-	container.remove();
-        mostrarMensaje2();    
-}
+function eliminarElementos(position){
+	let formData= "position=" + position;
+	
+        const XHR = new XMLHttpRequest();
+         
+        XHR.addEventListener('error', (event) => {  
+        alert('Oops! Something went wrong.');
+	  });
+          
+        XHR.open('POST', 'NewServlet', true);
+        XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        
+        XHR.onload = () => {
+            if (XHR.readyState === XHR.DONE && XHR.status === 200) {
+              console.log("response => " + XHR.response);
+              document.getElementById('BodyTable').innerHTML=XHR.response;
+              mostrarMensaje2();
+            
+            }
+          };
+          
+          XHR.send(formData);        
+} 
 
 function mostrarMensaje2(){
   Swal.fire({
@@ -170,3 +188,4 @@ function mostrarMensaje2(){
   timer: 1500
 })
 }
+
