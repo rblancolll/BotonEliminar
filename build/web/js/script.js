@@ -171,7 +171,7 @@ function eliminarElementos(position){
         XHR.onload = () => {
             if (XHR.readyState === XHR.DONE && XHR.status === 200) {
               console.log("response => " + XHR.response);
-              document.getElementById('BodyTable').innerHTML=XHR.response;
+              document.getElementById('bodyTable').innerHTML=XHR.response;
               mostrarMensaje2();
             
             }
